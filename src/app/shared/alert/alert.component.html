@@ -1,0 +1,11 @@
+<div class="backdrop" (click)="onClose()"></div>
+<div
+  class="alert-box"
+  [ngClass]="{ 'alert-success': isSuccess, 'alert-danger': !isSuccess }"
+  role="alert"
+>
+  <p>{{ message }}</p>
+  <div class="alert-box-actions">
+    <button class="btn btn-primary" (click)="onClose()">Close</button>
+  </div>
+</div>

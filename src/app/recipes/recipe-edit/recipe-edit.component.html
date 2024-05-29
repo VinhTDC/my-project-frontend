@@ -1,0 +1,112 @@
+<div class="container mt-5">
+  <h2
+    class="mb-4 text-center display-6"
+    style="font-family: 'Dancing Script', cursive; color: #c0392b"
+  >
+    <i class="bi bi-journal-richtext"></i> Nhật Ký Bếp
+  </h2>
+  <div
+    class="card shadow-lg neumorphism parallax-3d"
+    style="border-radius: 20px; overflow: hidden"
+  >
+    <div class="card-body ng-valid">
+      <form *ngIf="recipeForm" [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="name" class="form-label text-white">Tên món ăn</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control glassmorphism"
+            placeholder="Ví dụ: Bún bò Huế"
+          />
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="imagePath">Image URL</label>
+              <input
+                type="text"
+                id="imagePath"
+                formControlName="imagePath"
+                class="form-control"
+                #imagePath
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <img [src]="imagePath.value" class="img-responsive img-fluid" />
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="description" class="form-label text-white">Mô tả</label>
+          <textarea
+            id="description"
+            class="form-control glassmorphism"
+            rows="4"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div class="mb-3 ingredient-list">
+          <h5 class="text-white">Nguyên liệu</h5>
+
+          <div id="ingredientsContainer" formArrayName="ingredients">
+            <div
+              *ngFor="let ingredientCtrl of ingredientsControls; let i = index"
+              [formGroupName]="i"
+              class="input-group mb-2"
+            >
+              <div class="input-group mb-2">
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control glassmorphism"
+                  placeholder="Nhập nguyên liệu"
+                />
+                <input
+                  type="number"
+                  formControlName="amount"
+                  class="form-control glassmorphism"
+                  placeholder="Nhập số lượng"
+                  pattern="^[1-9]+[0-9]*$"
+                />
+                <button
+                  type="button"
+                  class="btn btn btn-danger"
+                  (click)="onDeleteIngredient(i)"
+                >
+                  <i class="bi bi-x-circle-fill"></i>
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm mt-2"
+              (click)="onAddIngredient()"
+            >
+              <i class="bi bi-plus-circle-fill"></i> Thêm nguyên liệu
+            </button>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end gap-2">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!recipeForm.valid"
+          >
+            <i class="bi bi-check-circle-fill"></i> Lưu công thức
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="onCancel()"
+          >
+            Hủy
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

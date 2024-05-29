@@ -1,0 +1,17 @@
+<a
+  style="cursor: pointer;"
+  [routerLink]="index"
+  routerLinkActive="active"
+  class="list-group-item clearfix list-group-item-action d-flex justify-content-between align-items-center"
+>
+  <div>
+    <h4 class="mb-1">{{ recipe.name }}</h4>
+    <p class="mb-1">{{ recipe.description }}</p>
+  </div>
+  <img
+    src="{{ recipe.imagePath }}"
+    alt=""
+    class="rounded-circle"
+    style="max-height: 50px"
+  />
+</a>

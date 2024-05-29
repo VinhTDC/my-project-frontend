@@ -1,0 +1,32 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col d-flex justify-content-end mb-3">
+      <button class="btn btn-primary" (click)="onNewRecipe()">
+        <i class="bi bi-plus-circle me-2"></i> Thêm công thức
+      </button>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col" *ngFor="let recipe of recipes; let i = index">
+      <div class="card h-100">
+        <img
+          [src]="recipe.imagePath"
+          class="card-img-top"
+          alt="{{ recipe.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.name }}</h5>
+          <p class="card-text">{{ recipe.description }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <small class="text-muted">
+            <i class="bi bi-clock me-1"></i> {{ recipe.cookTime }} phút
+            <span class="mx-2">|</span>
+            <i class="bi bi-bar-chart me-1"></i> {{ recipe.difficulty }}
+          </small>
+          <a [routerLink]="['/recipes', i]" class="btn btn-outline-primary stretched-link">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

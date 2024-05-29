@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhật Ký Bếp</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./recipe-edit.component.css">
+  <style>
+    /* Các kiểu CSS khác */
+    .neumorphism {
+      border-radius: 20px;
+      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2), -8px -8px 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .glassmorphism {
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+    }
+
+    .parallax-3d {
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translateZ(-1px) scale(2);
+      z-index: -1;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Các kiểu CSS khác */
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center display-6" style="font-family: 'Dancing Script', cursive; color: #c0392b;">
+      <i class="bi bi-journal-richtext"></i> Nhật Ký Bếp
+    </h2>
+    <div class="card shadow-lg neumorphism parallax-3d" style="border-radius: 20px; overflow: hidden;">
+      <div class="card-body" style="background: linear-gradient(45deg, #f0932b, #f55050, #be2edd); background-size: 400% 400%; animation: gradientAnimation 15s ease infinite;">
+        <form>
+          <div class="form-group mb-3">
+            <label for="name" class="form-label text-white">Tên món ăn</label>
+            <input type="text" id="name" class="form-control glassmorphism" placeholder="Ví dụ: Bún bò Huế" />
+          </div>
+          <div class="form-group mb-3">
+            <label for="imagePath" class="form-label text-white">Hình ảnh</label>
+            <div class="image-upload-container glassmorphism">
+              <input type="file" id="imagePath" accept="image/*" style="display: none;" />
+              <div class="image-preview">
+                <img id="previewImage" src="#" alt="Preview Image" style="max-height: 200px; display: none;">
+                <i class="bi bi-image" style="font-size: 5rem; color: #ccc;"></i>
+                <p class="text-muted">Thả ảnh vào đây hoặc nhấn để chọn</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="description" class="form-label text-white">Mô tả</label>
+            <textarea id="description" class="form-control glassmorphism" rows="4"></textarea>
+          </div>
+          <div class="mb-3 ingredient-list">
+            <h5 class="text-white">Nguyên liệu</h5>
+            <div id="ingredientsContainer"></div>
+            <button type="button" class="btn btn-primary btn-sm mt-2" onclick="addIngredientInput()">
+              <i class="bi bi-plus-circle-fill"></i> Thêm nguyên liệu
+            </button>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-success">
+              <i class="bi bi-check-circle-fill"></i> Lưu công thức
+            </button>
+            <button type="button" class="btn btn-outline-secondary">Hủy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Xử lý sự kiện chọn ảnh
+    const imageInput = document.getElementById('imagePath');
+    const previewImage = document.getElementById('previewImage');
+
+    imageInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.addEventListener('load', function() {
+          previewImage.src = reader.result;
+          previewImage.style.display = 'block';
+        });
+        reader.readAsDataURL(file);
+      } else {
+        previewImage.src = '#';
+        previewImage.style.display = 'none';
+      }
+    });
+
+    // Xử lý thêm nguyên liệu
+    function addIngredientInput() {
+      const ingredientsContainer = document.getElementById('ingredientsContainer');
+      const inputGroup = document.createElement('div');
+      inputGroup.classList.add('input-group', 'mb-2');
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.classList.add('form-control', 'glassmorphism');
+      input.placeholder = 'Nhập nguyên liệu';
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.classList.add('btn', 'btn-danger');
+      button.innerHTML = '<i class="bi bi-x-circle-fill"></i>';
+      button.addEventListener('click', function() {
+        ingredientsContainer.removeChild(inputGroup);
+      });
+
+      inputGroup.appendChild(input);
+      inputGroup.appendChild(button);
+      ingredientsContainer.appendChild(inputGroup);
+    }
+  </script>
+</body>
+</html>

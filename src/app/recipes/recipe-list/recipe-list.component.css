@@ -1,0 +1,27 @@
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Image styling */
+.card-img-top {
+  border-radius: 5px; /* Bo tròn góc ảnh */
+}
+/* Parallax effect */
+.card-img-top {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Gradient background */
+.card-header {
+  background-image: linear-gradient(135deg, #f5576c, #f093fb);
+}

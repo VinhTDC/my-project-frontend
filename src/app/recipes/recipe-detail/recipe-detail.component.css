@@ -1,0 +1,128 @@
+a{
+  cursor: pointer
+}
+
+.container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #343a40;
+}
+
+.dropdown-menu {
+  border-radius: 8px;
+}
+
+
+img {
+  max-height: 350px;
+  object-fit: cover;
+}
+
+
+.list-group-item {
+  background-color: #fff;
+  border-left: 4px solid #007bff;
+}
+
+
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  img {
+    margin-bottom: 20px;
+  }
+}
+img:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi di chuột qua */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn khi di chuột qua */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Chuyển tiếp mượt mà */
+}
+
+/* Thêm hiệu ứng cho danh sách nguyên liệu */
+.list-group-item:hover {
+  background-color: #f0f8ff; /* Màu nền nhạt khi di chuột qua */
+  transform: translateX(5px); /* Dịch chuyển nhẹ sang phải khi di chuột qua */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Chuyển tiếp mượt mà */
+}
+
+/* Thêm kiểu cho nút "Manage Recipe" */
+.dropdown-toggle {
+  background-color: #007bff; /* Màu xanh dương nổi bật */
+  border: none;
+}
+
+.dropdown-toggle:hover {
+  background-color: #0069d9; /* Màu xanh dương đậm hơn khi di chuột qua */
+}
+
+/* Thêm kiểu cho các mục trong dropdown menu */
+.dropdown-item {
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f8ff; /* Màu nền nhạt khi di chuột qua */
+}
+/* Parallax scrolling */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Hiệu ứng chuyển động */
+.animated-icon {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.dropdown-menu {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.dropdown-menu.show {
+  transform: scaleY(1);
+}
+
+.dropdown-item {
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #e9ecef;
+  transform: translateX(5px);
+}
+.dropdown-toggle {
+  transition: all 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+  background-color: #e9ecef;
+}
+
+.dropdown-toggle::after {
+  transition: all 0.3s ease;
+}
+
+.dropdown.show .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
